@@ -18,7 +18,7 @@ public class Robot {
         myself.rightbackDrive.setPower(s);
     }
 
-    public void StopDrive(double s) {
+    public void StopDrive() {
         myself.leftfrontDrive.setPower(0);
         myself.rightfrontDrive.setPower(0);
         myself.leftbackDrive.setPower(0);
