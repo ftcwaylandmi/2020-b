@@ -22,15 +22,14 @@ public class TeleOpB extends OpMode{
         left = -gamepad1.left_stick_y;
         right = -gamepad1.right_stick_y;
         slide = gamepad1.left_stick_x;
+        telemetry.addData("left", left);
+        telemetry.addData("right", right);
+        telemetry.addData("slide", slide);
+        telemetry.update();
 
         myrobot.Slide(slide);
+        myrobot.LeftDrive(left);
+        myrobot.RightDrive(right);
 
-        if (gamepad1.right_bumper) {
-            myrobot.LeftDrive(left);
-            myrobot.RightDrive(right);
-        }else{
-            myrobot.LeftDrive(left/2);
-            myrobot.RightDrive(right/2);
         }
     }
-}

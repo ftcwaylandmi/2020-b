@@ -54,10 +54,10 @@ public class Robot {
     }
 
     public void Slide(double s) {
-        myself.leftfrontDrive.setPower(s);
-        myself.rightfrontDrive.setPower(s);
-        myself.leftbackDrive.setPower(-s);
-        myself.rightbackDrive.setPower(-s);
+        myself.leftfrontDrive.setPower(-s);
+        myself.rightfrontDrive.setPower(-s);
+        myself.leftbackDrive.setPower(s);
+        myself.rightbackDrive.setPower(s);
     }
-    
+
 }
