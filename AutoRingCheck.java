@@ -18,15 +18,15 @@ public class AutoRingCheck extends LinearOpMode {
 
         myrobot.initHW(hardwareMap);
 
-        waitForStart();;
+        waitForStart();
         myruntime.reset();
 
         myrobot.Drive(1);
         sleep( 100);
-
         myrobot.StopDrive();
         myrobot.SpinRight(1);
         sleep(100);
         myrobot.StopDrive();
     }
+
 }

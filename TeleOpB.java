@@ -9,6 +9,7 @@ public class TeleOpB extends OpMode{
     Robot myrobot = new Robot();
     double left = 0.00;
     double right = 0.00;
+    double slide = 0.00;
 
     @Override
     public void init() {
@@ -20,6 +21,9 @@ public class TeleOpB extends OpMode{
     public void loop() {
         left = -gamepad1.left_stick_y;
         right = -gamepad1.right_stick_y;
+        slide = gamepad1.left_stick_x;
+
+        myrobot.Slide(slide);
 
         if (gamepad1.right_bumper) {
             myrobot.LeftDrive(left);

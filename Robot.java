@@ -53,4 +53,11 @@ public class Robot {
         myself.rightbackDrive.setPower(s);
     }
 
+    public void Slide(double s) {
+        myself.leftfrontDrive.setPower(s);
+        myself.rightfrontDrive.setPower(s);
+        myself.leftbackDrive.setPower(-s);
+        myself.rightbackDrive.setPower(-s);
+    }
+    
 }
