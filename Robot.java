@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.teamcode.RobotHardware;
 
 public class Robot {
 
     RobotHardware myself = new RobotHardware();
+    double InchesPerSecond = 2.00;
 
     public void initHW(HardwareMap ahwMap){
         myself.init(ahwMap);
@@ -58,6 +61,46 @@ public class Robot {
         myself.rightfrontDrive.setPower(s);
         myself.leftbackDrive.setPower(s);
         myself.rightbackDrive.setPower(-s);
+    }
+
+    public void DriveByInchesTimeSetPower (int inches, double power) {
+        double waitTime = 0.00;
+        if (inches > 0) {
+            power = power * -1;
+            waitTime = inches * InchesPerSecond;
+            Drive(power);
+        }else{
+            inches = -inches;
+            waitTime = inches * InchesPerSecond;
+            Drive(power);
+        }
+
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        while (timer.milliseconds() < (waitTime * 100)) {
+
+        }
+        StopDrive();
+    }
+
+    public void SlideByInchesTimeSetPower (int inches, double power) {
+        double waitTime = 0.00;
+        if (inches > 0) {
+            power = power * -1;
+            waitTime = inches * InchesPerSecond;
+            Slide(power);
+        }else{
+            inches = -inches;
+            waitTime = inches * InchesPerSecond;
+            Slide(power);
+        }
+
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        while (timer.milliseconds() < (waitTime * 100)) {
+
+        }
+        StopDrive();
     }
 
 }
