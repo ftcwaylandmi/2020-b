@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.RobotHardware;
 public class Robot {
 
     RobotHardware myself = new RobotHardware();
-    double InchesPerSecond = 2.00;
+    double InchesPerSecond = 1/9;
 
     public void initHW(HardwareMap ahwMap){
         myself.init(ahwMap);
@@ -66,13 +66,13 @@ public class Robot {
     public void DriveByInchesTimeSetPower (int inches, double power) {
         double waitTime = 0.00;
         if (inches > 0) {
-            power = power * -1;
+            //power = power * -1;
             waitTime = inches * InchesPerSecond;
             Drive(power);
         }else{
             inches = -inches;
             waitTime = inches * InchesPerSecond;
-            Drive(power);
+            Drive(-power);
         }
 
         ElapsedTime timer = new ElapsedTime();

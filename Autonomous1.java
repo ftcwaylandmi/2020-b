@@ -20,7 +20,7 @@ public class Autonomous1 extends LinearOpMode {
         waitForStart();
         myruntime.reset();
 
-        myrobot.Drive(1);
+        myrobot.DriveByInchesTimeSetPower(1, 1);
 
     }
 
