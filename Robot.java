@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.RobotHardware;
+//import org.firstinspires.ftc.teamcode.RobotHardware;
 
 public class Robot {
 
@@ -61,6 +61,30 @@ public class Robot {
         myself.rightfrontDrive.setPower(s);
         myself.leftbackDrive.setPower(s);
         myself.rightbackDrive.setPower(-s);
+    }
+
+    public void StartBelt(){
+        myself.beltMotor.setPower(1);
+    }
+
+    public void StopBelt(){
+        myself.beltMotor.setPower(0);
+    }
+
+    public void StartFeeder(){
+        myself.feederMotor.setPower(1);
+    }
+
+    public void StopFeeder(){
+        myself.feederMotor.setPower(0);
+    }
+
+    public void StartShooter(){
+        myself.shooterMotor.setPower(1);
+    }
+
+    public void StopShooter(){
+        myself.shooterMotor.setPower(0);
     }
 
     public void DriveByInchesTimeSetPower (int inches, double power) {

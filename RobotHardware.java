@@ -10,6 +10,9 @@ public class RobotHardware {
     public DcMotor rightfrontDrive = null;
     public DcMotor leftbackDrive = null;
     public DcMotor rightbackDrive = null;
+    public DcMotor beltMotor = null;
+    public DcMotor feederMotor = null;
+    public DcMotor shooterMotor = null;
 
     HardwareMap hwMap = null;
 
@@ -24,18 +27,30 @@ public class RobotHardware {
         rightfrontDrive = hwMap.get(DcMotor.class, "rfd");
         leftbackDrive = hwMap.get(DcMotor.class, "lbd");
         rightbackDrive = hwMap.get(DcMotor.class, "rbd");
+        beltMotor = hwMap.get(DcMotor.class, "bm");
+        feederMotor = hwMap.get(DcMotor.class, "fm");
+        shooterMotor = hwMap.get(DcMotor.class, "sm");
         leftfrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightfrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftbackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightbackDrive.setDirection(DcMotor.Direction.FORWARD);
+        beltMotor.setDirection(DcMotor.Direction.FORWARD);
+        feederMotor.setDirection(DcMotor.Direction.FORWARD);
+        shooterMotor.setDirection(DcMotor.Direction.FORWARD);
         leftfrontDrive.setPower(0);
         rightfrontDrive.setPower(0);
         leftbackDrive.setPower(0);
         rightbackDrive.setPower(0);
+        beltMotor.setPower(0);
+        feederMotor.setPower(0);
+        shooterMotor.setPower(0);
         leftfrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightfrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftbackDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightbackDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        beltMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        feederMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        shooterMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
 
