@@ -9,6 +9,9 @@ public class Robot {
 
     RobotHardware myself = new RobotHardware();
     double InchesPerSecond = 1/9;
+    double BeltSpeed = 1;
+    double FeederSpeed = 1;
+    double ShooterSpeed = 1;
 
     public void initHW(HardwareMap ahwMap){
         myself.init(ahwMap);
@@ -64,7 +67,7 @@ public class Robot {
     }
 
     public void StartBelt(){
-        myself.beltMotor.setPower(1);
+        myself.beltMotor.setPower(BeltSpeed);
     }
 
     public void StopBelt(){
@@ -72,7 +75,7 @@ public class Robot {
     }
 
     public void StartFeeder(){
-        myself.feederMotor.setPower(1);
+        myself.feederMotor.setPower(FeederSpeed);
     }
 
     public void StopFeeder(){
@@ -80,11 +83,30 @@ public class Robot {
     }
 
     public void StartShooter(){
-        myself.shooterMotor.setPower(1);
+        myself.shooterMotor.setPower(ShooterSpeed);
     }
 
     public void StopShooter(){
         myself.shooterMotor.setPower(0);
+    }
+
+    public void IntakeAndFire(){
+       double FeederStop = 500.00;
+       double BeltStop = 1000.00;
+       double ShooterStop = 100.00;
+       StartFeeder();
+       StartBelt();
+       StartShooter();
+
+       ElapsedTime timer = new ElapsedTime();
+       timer.reset();
+       if (timer.milliseconds() > (FeederStop)){
+           StopFeeder();
+        }if(timer.milliseconds() > (FeederStop + BeltStop)){
+           StopBelt();
+        }if(timer.milliseconds() > (FeederStop + BeltStop + ShooterStop)){
+           StopShooter();
+        }
     }
 
     public void DriveByInchesTimeSetPower (int inches, double power) {
