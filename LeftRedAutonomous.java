@@ -224,6 +224,7 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d,1);
         myrobot.SlideByInchesTimeSetPower(12, 1);
         myrobot.DriveByInchesTimeSetPower(48, 1);
+        myrobot.StopDrive();
         telemetry.addData("Finishing","DriveToTwoFromLeftRed");
         telemetry.update();
 
@@ -237,6 +238,7 @@ public class LeftRedAutonomous extends LinearOpMode {
         d = firstdistance - alreadymoved;
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.DriveByInchesTimeSetPower(96, 1);
+        myrobot.StopDrive();
         telemetry.addData("Finishing","DriveToThreeFromLeftRed");
         telemetry.update();
 
