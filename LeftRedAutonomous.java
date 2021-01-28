@@ -138,18 +138,18 @@ public class LeftRedAutonomous extends LinearOpMode {
                             // FIXME Get label == Then Run Function
                             switch (recognition.getLabel()) {
                                 case "Single":
-                                    telemetry.addData("Found", "Single going to 2");
+                                    telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
-                                    DriveToTwoFromLeftRed(rescans * rescaninches);
+                                    LeftRedDriveToB(rescans * rescaninches);
                                     break;
                                 case "Quad":
-                                    telemetry.addData("Found", "Quad going to 3");
+                                    telemetry.addData("Found", "Quad going to C");
                                     telemetry.update();
-                                    DriveToThreeFromLeftRed(rescans * rescaninches);
+                                    LeftRedDriveToC(rescans * rescaninches);
                                 default:
-                                    telemetry.addData("Not Found","going to 1");
+                                    telemetry.addData("Not Found","going to A");
                                     if (rescans >= maxrescans) {
-                                        DriveToOneFromLeftRed(rescans * rescaninches);
+                                        LeftRedDriveToA(rescans * rescaninches);
                                     } else {
                                         rescans++;
                                         sleep(800);
@@ -209,7 +209,8 @@ public class LeftRedAutonomous extends LinearOpMode {
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
 
-    private void DriveToOneFromLeftRed(int alreadymoved){
+    private void LeftRedDriveToA(int alreadymoved){
+        //FIXME
         telemetry.addData("Starting","DriveToOneFromLeftRed");
         telemetry.update();
         int firstdistance = 140;
@@ -222,7 +223,8 @@ public class LeftRedAutonomous extends LinearOpMode {
         telemetry.update();
     }
 
-    private void DriveToTwoFromLeftRed(int alreadymoved){
+    private void LeftRedDriveToB(int alreadymoved){
+        //FIXME
         telemetry.addData("Starting","DriveToTwoFromLeftRed");
         telemetry.update();
         int firstdistance = 140;
@@ -237,7 +239,8 @@ public class LeftRedAutonomous extends LinearOpMode {
 
     }
 
-    private void DriveToThreeFromLeftRed(int alreadymoved){
+    private void LeftRedDriveToC(int alreadymoved){
+        //FIXME
         telemetry.addData("Starting","DriveToThreeFromLeftRed");
         telemetry.update();
         int firstdistance = 140;
@@ -249,6 +252,139 @@ public class LeftRedAutonomous extends LinearOpMode {
         telemetry.addData("Finishing","DriveToThreeFromLeftRed");
         telemetry.update();
 
+    }
+
+    private void RightRedDriveToA(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.SlideByInchesTimeSetPower(12, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
+    }
+
+    private void RightRedDriveToB(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.DriveByInchesTimeSetPower(30, 1);
+        myrobot.SlideByInchesTimeSetPower(-12, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
+    }
+
+    private void RightRedDriveToC(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.DriveByInchesTimeSetPower(60, 1);
+        myrobot.SlideByInchesTimeSetPower(12, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
+    }
+
+    private void RightBlueDriveToA(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.DriveByInchesTimeSetPower(68, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
+    }
+
+    private void RightBlueDriveToB(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToTwoFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d,1);
+        myrobot.SlideByInchesTimeSetPower(-12, 1);
+        myrobot.DriveByInchesTimeSetPower(48, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToTwoFromLeftRed");
+        telemetry.update();
+
+    }
+
+    private void RightBlueDriveToC(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToThreeFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.DriveByInchesTimeSetPower(96, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToThreeFromLeftRed");
+        telemetry.update();
+
+    }
+
+    private void LeftBlueDriveToA(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.SlideByInchesTimeSetPower(-12, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
+    }
+
+    private void LeftBlueDriveToB(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.DriveByInchesTimeSetPower(30, 1);
+        myrobot.SlideByInchesTimeSetPower(12, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
+    }
+
+    private void LeftBlueDriveToC(int alreadymoved){
+        //FIXME
+        telemetry.addData("Starting","DriveToOneFromLeftRed");
+        telemetry.update();
+        int firstdistance = 140;
+        int d;
+        d = firstdistance - alreadymoved;
+        myrobot.DriveByInchesTimeSetPower(d, 1);
+        myrobot.DriveByInchesTimeSetPower(60, 1);
+        myrobot.SlideByInchesTimeSetPower(-12, 1);
+        myrobot.StopDrive();
+        telemetry.addData("Finishing","DriveToOneFromLeftRed");
+        telemetry.update();
     }
 
 }
