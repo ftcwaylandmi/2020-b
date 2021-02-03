@@ -74,12 +74,20 @@ public class Robot {
         myself.beltMotor.setPower(0);
     }
 
+    public void ReverseBelt(){
+        myself.beltMotor.setPower(-BeltSpeed);
+    }
+
     public void StartFeeder(){
         myself.feederMotor.setPower(FeederSpeed);
     }
 
     public void StopFeeder(){
         myself.feederMotor.setPower(0);
+    }
+
+    public void ReverseFeeder(){
+        myself.feederMotor.setPower(-FeederSpeed);
     }
 
     public void StartShooter(){

@@ -219,6 +219,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.DriveByInchesTimeSetPower(68, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide left to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -234,6 +239,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.SlideByInchesTimeSetPower(12, 1);
         myrobot.DriveByInchesTimeSetPower(48, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide left to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToTwoFromLeftRed");
         telemetry.update();
 
@@ -249,6 +259,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.DriveByInchesTimeSetPower(96, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide left to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToThreeFromLeftRed");
         telemetry.update();
 
@@ -264,6 +279,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.SlideByInchesTimeSetPower(12, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide left to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -279,6 +299,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(30, 1);
         myrobot.SlideByInchesTimeSetPower(-12, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide left to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -294,6 +319,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(60, 1);
         myrobot.SlideByInchesTimeSetPower(12, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide left to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -308,6 +338,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.DriveByInchesTimeSetPower(68, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide right to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -323,6 +358,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.SlideByInchesTimeSetPower(-12, 1);
         myrobot.DriveByInchesTimeSetPower(48, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide right to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToTwoFromLeftRed");
         telemetry.update();
 
@@ -338,6 +378,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.DriveByInchesTimeSetPower(96, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide right to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToThreeFromLeftRed");
         telemetry.update();
 
@@ -353,6 +398,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(d, 1);
         myrobot.SlideByInchesTimeSetPower(-12, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide right to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -368,6 +418,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(30, 1);
         myrobot.SlideByInchesTimeSetPower(12, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide right to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }
@@ -383,6 +438,11 @@ public class LeftRedAutonomous extends LinearOpMode {
         myrobot.DriveByInchesTimeSetPower(60, 1);
         myrobot.SlideByInchesTimeSetPower(-12, 1);
         myrobot.StopDrive();
+        //TODO drive backwards behind the line
+        //TODO slide right to the power shot goals
+        //TODO fire ring at power shot goal
+        //TODO slide to other power shot goals and fire the rest of our rings at them
+        //TODO park on the line
         telemetry.addData("Finishing","DriveToOneFromLeftRed");
         telemetry.update();
     }

@@ -25,6 +25,24 @@ public class TeleOpB extends OpMode{
         telemetry.addData("left", left);
         telemetry.addData("right", right);
         telemetry.addData("slide", slide);
+        if ((gamepad2.a) & (!gamepad2.b)){
+            myrobot.StartBelt();
+            myrobot.StartFeeder();
+        }
+        if ((gamepad2.b) & (!gamepad2.a)){
+            myrobot.StopBelt();
+            myrobot.StopFeeder();
+        }
+        if ((gamepad2.a) & (gamepad2.b)){
+            myrobot.ReverseBelt();
+            myrobot.ReverseFeeder();
+        }
+        if (gamepad2.x){
+            myrobot.StartShooter();
+        }
+        if (gamepad2.y){
+            myrobot.StopShooter();
+        }
         telemetry.update();
 
         myrobot.Slide(slide);
