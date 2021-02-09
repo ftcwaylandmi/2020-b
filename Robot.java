@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Robot {
 
     RobotHardware myself = new RobotHardware();
-    double InchesPerSecond = 1/9;
+    double InchesPerSecond = .11;
     double BeltSpeed = 1;
     double FeederSpeed = 1;
     double ShooterSpeed = 1;
@@ -117,7 +117,7 @@ public class Robot {
         }
     }
 
-    public void DriveByInchesTimeSetPower (int inches, double power) {
+    public double DriveByInchesTimeSetPower (int inches, double power) {
         double waitTime = 0.00;
         if (inches > 0) {
             //power = power * -1;
@@ -128,15 +128,35 @@ public class Robot {
             waitTime = inches * InchesPerSecond;
             Drive(-power);
         }
-
+/*
         ElapsedTime timer = new ElapsedTime();
         timer.reset();
         while (timer.milliseconds() < (waitTime * 100)) {
 
-        }
-        StopDrive();
+        }*/
+        return waitTime;
     }
 
+    public double SlideByInchesTimeSetPower(int inches, double power) {
+        double waitTime = 0.00;
+        if (inches > 0) {
+            power = power * -1;
+            waitTime = inches * InchesPerSecond;
+            Slide(power);
+        }else{
+            inches = -inches;
+            waitTime = inches * InchesPerSecond;
+            Slide(power);
+        }
+/*
+        ElapsedTime timer = new ElapsedTime();
+        timer.reset();
+        while (timer.milliseconds() < (waitTime * 100)) {
+        }
+        //StopDrive();*/
+        return waitTime;
+    }
+/*
     public void SlideByInchesTimeSetPower (int inches, double power) {
         double waitTime = 0.00;
         if (inches > 0) {
@@ -152,9 +172,8 @@ public class Robot {
         ElapsedTime timer = new ElapsedTime();
         timer.reset();
         while (timer.milliseconds() < (waitTime * 100)) {
-
         }
-        StopDrive();
-    }
+        //StopDrive();
+    }*/
 
 }
