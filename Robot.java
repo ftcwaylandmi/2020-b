@@ -11,7 +11,6 @@ public class Robot {
     double InchesPerSecond = .11;
     double BeltSpeed = 1;
     double FeederSpeed = 1;
-    double ShooterSpeed = 1;
 
     public void initHW(HardwareMap ahwMap){
         myself.init(ahwMap);
@@ -60,8 +59,8 @@ public class Robot {
     }
 
     public void Slide(double s) {
-        myself.leftfrontDrive.setPower(-s);
-        myself.rightfrontDrive.setPower(s);
+        myself.leftfrontDrive.setPower(0.5 * s);
+        myself.rightfrontDrive.setPower(0.5 * s);
         myself.leftbackDrive.setPower(s);
         myself.rightbackDrive.setPower(-s);
     }
@@ -90,8 +89,8 @@ public class Robot {
         myself.feederMotor.setPower(-FeederSpeed);
     }
 
-    public void StartShooter(){
-        myself.shooterMotor.setPower(ShooterSpeed);
+    public void StartShooter(double t){
+        myself.shooterMotor.setPower(t);
     }
 
     public void StopShooter(){
@@ -104,7 +103,7 @@ public class Robot {
        double ShooterStop = 100.00;
        StartFeeder();
        StartBelt();
-       StartShooter();
+       StartShooter(1);
 
        ElapsedTime timer = new ElapsedTime();
        timer.reset();

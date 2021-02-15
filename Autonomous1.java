@@ -16,10 +16,8 @@ public class Autonomous1 extends LinearOpMode {
         telemetry.update();
 
         myrobot.initHW(hardwareMap);
-        RobotAction step1 = new RobotAction();
-        RobotAction step2 = new RobotAction();
-        step1.Init(myrobot, "drive", -14);
-        step2.Init(myrobot, "slide", 14);
+        RobotAction step1 = new RobotAction(myrobot, "drive", -14);
+        RobotAction step2 = new RobotAction(myrobot, "slide", 14);
 
         waitForStart();
         //myruntime.reset();

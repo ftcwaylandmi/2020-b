@@ -10,6 +10,7 @@ public class TeleOpB extends OpMode{
     double left = 0.00;
     double right = 0.00;
     double slide = 0.00;
+    double trigger = 0.00;
 
     @Override
     public void init() {
@@ -22,9 +23,11 @@ public class TeleOpB extends OpMode{
         left = -gamepad1.left_stick_y;
         right = -gamepad1.right_stick_y;
         slide = gamepad1.left_stick_x;
+        trigger = gamepad2.right_trigger;
         telemetry.addData("left", left);
         telemetry.addData("right", right);
         telemetry.addData("slide", slide);
+        telemetry.addData("trigger", trigger);
         if ((gamepad2.a) & (!gamepad2.b)){
             myrobot.StartBelt();
             myrobot.StartFeeder();
@@ -37,14 +40,9 @@ public class TeleOpB extends OpMode{
             myrobot.ReverseBelt();
             myrobot.ReverseFeeder();
         }
-        if (gamepad2.x){
-            myrobot.StartShooter();
-        }
-        if (gamepad2.y){
-            myrobot.StopShooter();
-        }
-        telemetry.update();
 
+        telemetry.update();
+        myrobot.StartShooter(trigger);
         myrobot.Slide(slide);
         myrobot.LeftDrive(left);
         myrobot.RightDrive(right);

@@ -11,6 +11,12 @@ public class RobotAction {
     private int mydistance = 0;
     private boolean running = false;
 
+    RobotAction(Robot r, String action, int distance) {
+        this.myrobot = r;
+        this.myaction = action;
+        this.mydistance = distance;
+    }
+
     public void Init(Robot r, String action, int distance) {
         myrobot = r;
         myaction = action;

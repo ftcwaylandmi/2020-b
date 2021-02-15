@@ -98,10 +98,9 @@ public class LeftRedAutonomous extends LinearOpMode {
         int rescans = 0;
         int maxrescans = 6;
         int rescaninches = 0;
-        RobotAction step1 = new RobotAction();
-        RobotAction step2 = new RobotAction();
-        step1.Init(myrobot, "drive", -140);
-        step2.Init(myrobot, "slide", 14);
+        RobotAction[] steps;
+        //steps[0] = new RobotAction(myrobot, "drive", -140);
+        //steps[1] = new RobotAction(myrobot, "slide", 14);
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
@@ -127,14 +126,13 @@ public class LeftRedAutonomous extends LinearOpMode {
 
         if (opModeIsActive()) {
             while(opModeIsActive()) {
-                if (!step1.IsComplete() || !step1.IsRunning()) {
-                    step1.Run();
-                } else if (!step2.IsComplete() || !step2.IsRunning()) {
-                    step2.Run();
-                } else {
-                    telemetry.addData(">", "Step 1 and 2 Complete");
-                    telemetry.update();
-                }
+                /*for (int i = 0; i < steps.length; i++) {
+                    if(!steps[i].Finished()) {
+                        steps[i].Run();
+                    }
+
+                }*/
+
             }
             myrobot.StopDrive();
             telemetry.addData(">", "Complete");
@@ -233,16 +231,8 @@ public class LeftRedAutonomous extends LinearOpMode {
         int firstdistance = -140;
         int d;
         d = firstdistance - alreadymoved;
-        RobotAction step1 = new RobotAction();
-        RobotAction step2 = new RobotAction();
-        step1.Init(myrobot, "drive", firstdistance);
-        while (!step1.IsComplete() ) {
-
-        }
-        step2.Init(myrobot, "slide", 14);
-        while (!step2.IsComplete() ) {
-
-        }
+        RobotAction step1 = new RobotAction(myrobot, "drive", firstdistance);
+        RobotAction step2 = new RobotAction(myrobot, "slide", 14);
         myrobot.StopDrive();
         //TODO drive backwards behind the line
         //TODO slide left to the power shot goals
