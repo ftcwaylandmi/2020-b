@@ -98,9 +98,8 @@ public class LeftRedAutonomous extends LinearOpMode {
         int rescans = 0;
         int maxrescans = 6;
         int rescaninches = 0;
-        RobotAction[] steps;
-        //steps[0] = new RobotAction(myrobot, "drive", -140);
-        //steps[1] = new RobotAction(myrobot, "slide", 14);
+        RobotAction[] steps = genSteps("red", "left", 0);
+
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
@@ -126,12 +125,12 @@ public class LeftRedAutonomous extends LinearOpMode {
 
         if (opModeIsActive()) {
             while(opModeIsActive()) {
-                /*for (int i = 0; i < steps.length; i++) {
+                for (int i = 0; i < steps.length; i++) {
                     if(!steps[i].Finished()) {
                         steps[i].Run();
                     }
 
-                }*/
+                }
 
             }
             myrobot.StopDrive();
@@ -155,16 +154,16 @@ public class LeftRedAutonomous extends LinearOpMode {
                                 case "Single":
                                     telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
-                                    LeftRedDriveToB(rescans * rescaninches);
+                                    //FIXME Use the new function at the bottom
                                     break;
                                 case "Quad":
                                     telemetry.addData("Found", "Quad going to C");
                                     telemetry.update();
-                                    LeftRedDriveToC(rescans * rescaninches);
+                                    //FIXME Use the new function at the bottom
                                 default:
                                     telemetry.addData("Not Found","going to A");
                                     if (rescans >= maxrescans) {
-                                        LeftRedDriveToA(rescans * rescaninches);
+                                        //FIXME Use the new function at the bottom
                                     } else {
                                         rescans++;
                                         sleep(800);
@@ -224,242 +223,90 @@ public class LeftRedAutonomous extends LinearOpMode {
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
 
-    private void LeftRedDriveToA(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = -140;
-        int d;
-        d = firstdistance - alreadymoved;
-        RobotAction step1 = new RobotAction(myrobot, "drive", firstdistance);
-        RobotAction step2 = new RobotAction(myrobot, "slide", 14);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide left to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
+    public RobotAction[] genSteps(String color, String side, int stackheight){
+        RobotAction[] steps = new RobotAction[5];
+        if (color.toLowerCase() == "red") {
+            //RED
+            if (side.toLowerCase() == "right") {
+                //Right
+                if (stackheight == 4) {
+                    // Four rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 220);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", -30);
+                } else if (stackheight == 1) {
+                    // One ring detected
+                    steps[0] = new RobotAction(myrobot, "drive", 180);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", 30);
+                } else {
+                    // No rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 120);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", -30);
+                }
+            }else{
+                //Left
+                if (stackheight == 4) {
+                    // Four rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 220);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", -120);
+                } else if (stackheight == 1) {
+                    // One ring detected
+                    steps[0] = new RobotAction(myrobot, "drive", 180);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", -10);
+                } else {
+                    // No rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 120);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", -60);
+                }
+            }
+
+        } else {
+            //BLUE
+            if (side.toLowerCase() == "right") {
+                //Right
+                if (stackheight == 4) {
+                    // Four rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 220);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", 60);
+                } else if (stackheight == 1) {
+                    // One ring detected
+                    steps[0] = new RobotAction(myrobot, "drive", 160);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", 30);
+                } else {
+                    // No rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 120);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", 60);
+                }
+            }else{
+                //Left
+                if (stackheight == 4) {
+                    // Four rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 220);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", 30);
+                } else if (stackheight == 1) {
+                    // One ring detected
+                    steps[0] = new RobotAction(myrobot, "drive", 160);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", -30);
+                } else {
+                    // No rings detected
+                    steps[0] = new RobotAction(myrobot, "drive", 120);
+                    steps[1] = new RobotAction(myrobot, "stop", 10);
+                    steps[2] = new RobotAction(myrobot, "slide", 30);
+                }
+            }
+        }
+        return steps;
     }
 
-    private void LeftRedDriveToB(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToTwoFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d,1);
-        myrobot.SlideByInchesTimeSetPower(12, 1);
-        myrobot.DriveByInchesTimeSetPower(48, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide left to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToTwoFromLeftRed");
-        telemetry.update();
-
-    }
-
-    private void LeftRedDriveToC(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToThreeFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(96, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide left to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToThreeFromLeftRed");
-        telemetry.update();
-
-    }
-
-    private void RightRedDriveToA(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.SlideByInchesTimeSetPower(12, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide left to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
-
-    private void RightRedDriveToB(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(30, 1);
-        myrobot.SlideByInchesTimeSetPower(-12, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide left to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
-
-    private void RightRedDriveToC(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(60, 1);
-        myrobot.SlideByInchesTimeSetPower(12, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide left to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
-
-    private void RightBlueDriveToA(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(68, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide right to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
-
-    private void RightBlueDriveToB(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToTwoFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d,1);
-        myrobot.SlideByInchesTimeSetPower(-12, 1);
-        myrobot.DriveByInchesTimeSetPower(48, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide right to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToTwoFromLeftRed");
-        telemetry.update();
-
-    }
-
-    private void RightBlueDriveToC(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToThreeFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(96, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide right to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToThreeFromLeftRed");
-        telemetry.update();
-
-    }
-
-    private void LeftBlueDriveToA(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.SlideByInchesTimeSetPower(-12, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide right to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
-
-    private void LeftBlueDriveToB(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(30, 1);
-        myrobot.SlideByInchesTimeSetPower(12, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide right to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
-
-    private void LeftBlueDriveToC(int alreadymoved){
-        //FIXME
-        telemetry.addData("Starting","DriveToOneFromLeftRed");
-        telemetry.update();
-        int firstdistance = 140;
-        int d;
-        d = firstdistance - alreadymoved;
-        myrobot.DriveByInchesTimeSetPower(d, 1);
-        myrobot.DriveByInchesTimeSetPower(60, 1);
-        myrobot.SlideByInchesTimeSetPower(-12, 1);
-        myrobot.StopDrive();
-        //TODO drive backwards behind the line
-        //TODO slide right to the power shot goals
-        //TODO fire ring at power shot goal
-        //TODO slide to other power shot goals and fire the rest of our rings at them
-        //TODO park on the line
-        telemetry.addData("Finishing","DriveToOneFromLeftRed");
-        telemetry.update();
-    }
 
 }

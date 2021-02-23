@@ -34,6 +34,8 @@ public class RobotAction {
                // myrobot.Slide(1);
             } else if (myaction == "null") {
                 waittime = 0;
+            }else if (myaction == "stop"){
+                myrobot.StopDrive();
             }
             timer.reset();
         }

@@ -16,9 +16,67 @@ public class Autonomous1 extends LinearOpMode {
         telemetry.update();
 
         myrobot.initHW(hardwareMap);
-        RobotAction step1 = new RobotAction(myrobot, "drive", -14);
-        RobotAction step2 = new RobotAction(myrobot, "slide", 14);
 
+        RobotAction step1 = new RobotAction(myrobot, "drive", 220);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", 60);
+
+        /*Right Blue to B
+        RobotAction step1 = new RobotAction(myrobot, "drive", 160);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", 30);*/
+
+        /*Right Blue to A
+        RobotAction step1 = new RobotAction(myrobot, "drive", 120);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", 60);*/
+
+        /* Left Blue to C
+        RobotAction step1 = new RobotAction(myrobot, "drive", 220);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", 30);*/
+
+        /* Left Blue to B
+        RobotAction step1 = new RobotAction(myrobot, "drive", 160);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", -30);*/
+
+        /* Left Blue to A
+        RobotAction step1 = new RobotAction(myrobot, "drive", 120);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", 30);*/
+
+        /* Right Red to C
+        RobotAction step1 = new RobotAction(myrobot, "drive", 220);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", -30);*/
+
+        /* Right Red to B
+        RobotAction step1 = new RobotAction(myrobot, "drive", 180);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", 30);*/
+
+        /* Right Red to A
+        RobotAction step1 = new RobotAction(myrobot, "drive", 120);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", -30);*/
+
+        /* Left Red to C
+        RobotAction step1 = new RobotAction(myrobot, "drive", 220);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", -120);*/
+
+        /* Left Red to B
+        RobotAction step1 = new RobotAction(myrobot, "drive", 180);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", -10);*/
+
+
+        /*   Left Red to A
+        RobotAction step1 = new RobotAction(myrobot, "drive", 120);
+        RobotAction step2 = new RobotAction(myrobot, "stop", 10);
+        RobotAction step3 = new RobotAction(myrobot, "slide", -60);
+*/
         waitForStart();
         //myruntime.reset();
 
@@ -31,6 +89,8 @@ public class Autonomous1 extends LinearOpMode {
                     telemetry.update();
                 } else if (!step2.Finished()) {
                     step2.Run();
+                }else if (!step3.Finished()){
+                    step3.Run();
                 }
             }
             myrobot.StopDrive();

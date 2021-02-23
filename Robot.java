@@ -59,14 +59,14 @@ public class Robot {
     }
 
     public void Slide(double s) {
-        myself.leftfrontDrive.setPower(0.5 * s);
-        myself.rightfrontDrive.setPower(0.5 * s);
+        myself.leftfrontDrive.setPower(-s);
+        myself.rightfrontDrive.setPower(s);
         myself.leftbackDrive.setPower(s);
         myself.rightbackDrive.setPower(-s);
     }
 
     public void StartBelt(){
-        myself.beltMotor.setPower(BeltSpeed);
+        myself.beltMotor.setPower(-BeltSpeed);
     }
 
     public void StopBelt(){
@@ -74,11 +74,11 @@ public class Robot {
     }
 
     public void ReverseBelt(){
-        myself.beltMotor.setPower(-BeltSpeed);
+        myself.beltMotor.setPower(BeltSpeed);
     }
 
     public void StartFeeder(){
-        myself.feederMotor.setPower(FeederSpeed);
+        myself.feederMotor.setPower(-FeederSpeed);
     }
 
     public void StopFeeder(){
@@ -86,7 +86,7 @@ public class Robot {
     }
 
     public void ReverseFeeder(){
-        myself.feederMotor.setPower(-FeederSpeed);
+        myself.feederMotor.setPower(FeederSpeed);
     }
 
     public void StartShooter(double t){
