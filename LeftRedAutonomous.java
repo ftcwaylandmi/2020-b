@@ -59,7 +59,8 @@ public class LeftRedAutonomous extends LinearOpMode {
     private static final String LABEL_SECOND_ELEMENT = "Single";
     private ElapsedTime myruntime = new ElapsedTime();
     private Robot myrobot = new Robot();
-
+    private static final String Alliance = "red";
+    private static final String Side = "left";
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
      * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
@@ -98,7 +99,7 @@ public class LeftRedAutonomous extends LinearOpMode {
         int rescans = 0;
         int maxrescans = 6;
         int rescaninches = 0;
-        RobotAction[] steps = genSteps("red", "left", 0);
+
 
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
@@ -124,19 +125,6 @@ public class LeftRedAutonomous extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            while(opModeIsActive()) {
-                for (int i = 0; i < steps.length; i++) {
-                    if(!steps[i].Finished()) {
-                        steps[i].Run();
-                    }
-
-                }
-
-            }
-            myrobot.StopDrive();
-            telemetry.addData(">", "Complete");
-            telemetry.update();
-
 
             while (opModeIsActive()) {
                 if (tfod != null) {
@@ -147,6 +135,7 @@ public class LeftRedAutonomous extends LinearOpMode {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
+                        int height = 0;
                         for (Recognition recognition : updatedRecognitions) {
                             telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                             // FIXME Get label == Then Run Function
@@ -154,29 +143,27 @@ public class LeftRedAutonomous extends LinearOpMode {
                                 case "Single":
                                     telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
-                                    //FIXME Use the new function at the bottom
+                                    height = 1;
                                     break;
                                 case "Quad":
                                     telemetry.addData("Found", "Quad going to C");
                                     telemetry.update();
-                                    //FIXME Use the new function at the bottom
+                                    height = 4;
                                 default:
                                     telemetry.addData("Not Found","going to A");
-                                    if (rescans >= maxrescans) {
-                                        //FIXME Use the new function at the bottom
-                                    } else {
-                                        rescans++;
-                                        sleep(800);
 
-                                        telemetry.addData("Not Found","Trying again" + rescans);
-                                        telemetry.update();
-                                        myrobot.DriveByInchesTimeSetPower(rescaninches, 1);
-                                    }
                             }
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                     recognition.getRight(), recognition.getBottom());
+                        }
+                        RobotAction[] steps = genSteps(Alliance, Side, height);
+                        for (int j = 0; j < steps.length; j++) {
+                            if(!steps[j].Finished()) {
+                                steps[j].Run();
+                            }
+
                         }
                         telemetry.update();
                     }
