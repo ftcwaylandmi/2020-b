@@ -98,7 +98,6 @@ public class LeftRedAutonomous extends LinearOpMode {
         int rescans = 0;
         int maxrescans = 6;
         int rescaninches = 0;
-        RobotAction[] steps = genSteps("red", "left", 0);
 
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
@@ -125,12 +124,7 @@ public class LeftRedAutonomous extends LinearOpMode {
 
         if (opModeIsActive()) {
             while(opModeIsActive()) {
-                for (int i = 0; i < steps.length; i++) {
-                    if(!steps[i].Finished()) {
-                        steps[i].Run();
-                    }
 
-                }
 
             }
             myrobot.StopDrive();
@@ -150,28 +144,26 @@ public class LeftRedAutonomous extends LinearOpMode {
                         for (Recognition recognition : updatedRecognitions) {
                             telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                             // FIXME Get label == Then Run Function
+                            int sheight = 0;
                             switch (recognition.getLabel()) {
                                 case "Single":
                                     telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
-                                    //FIXME Use the new function at the bottom
+                                    sheight = 1;
                                     break;
                                 case "Quad":
                                     telemetry.addData("Found", "Quad going to C");
                                     telemetry.update();
-                                    //FIXME Use the new function at the bottom
+                                    sheight = 4;
                                 default:
                                     telemetry.addData("Not Found","going to A");
-                                    if (rescans >= maxrescans) {
-                                        //FIXME Use the new function at the bottom
-                                    } else {
-                                        rescans++;
-                                        sleep(800);
+                            }
+                            RobotAction[] actions = genSteps("red", "left", sheight);
+                            for (int j = 0; j < actions.length; j++) {
+                                if(!actions[i].Finished()) {
+                                    actions[i].Run();
+                                }
 
-                                        telemetry.addData("Not Found","Trying again" + rescans);
-                                        telemetry.update();
-                                        myrobot.DriveByInchesTimeSetPower(rescaninches, 1);
-                                    }
                             }
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
@@ -225,6 +217,9 @@ public class LeftRedAutonomous extends LinearOpMode {
 
     public RobotAction[] genSteps(String color, String side, int stackheight){
         RobotAction[] steps = new RobotAction[5];
+        for (int i = 0; i < steps.length; i++){
+            steps[i]= new RobotAction(myrobot,"stop",1);
+        }
         if (color.toLowerCase() == "red") {
             //RED
             if (side.toLowerCase() == "right") {
