@@ -59,7 +59,8 @@ public class LeftRedAutonomous extends LinearOpMode {
     private static final String LABEL_SECOND_ELEMENT = "Single";
     private ElapsedTime myruntime = new ElapsedTime();
     private Robot myrobot = new Robot();
-
+    private static final String Alliance = "red";
+    private static final String Side = "left";
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
      * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
@@ -123,13 +124,6 @@ public class LeftRedAutonomous extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            while(opModeIsActive()) {
-
-
-            }
-            myrobot.StopDrive();
-            telemetry.addData(">", "Complete");
-            telemetry.update();
 
 
             while (opModeIsActive()) {
@@ -141,14 +135,15 @@ public class LeftRedAutonomous extends LinearOpMode {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
+                        int sheight = 0;
                         for (Recognition recognition : updatedRecognitions) {
                             telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                             // FIXME Get label == Then Run Function
-                            int sheight = 0;
                             switch (recognition.getLabel()) {
                                 case "Single":
                                     telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
+
                                     sheight = 1;
                                     break;
                                 case "Quad":
@@ -158,17 +153,19 @@ public class LeftRedAutonomous extends LinearOpMode {
                                 default:
                                     telemetry.addData("Not Found","going to A");
                             }
-                            RobotAction[] actions = genSteps("red", "left", sheight);
-                            for (int j = 0; j < actions.length; j++) {
-                                if(!actions[i].Finished()) {
-                                    actions[i].Run();
-                                }
 
-                            }
+                           
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                                     recognition.getRight(), recognition.getBottom());
+                        }
+                        RobotAction[] steps = genSteps(Alliance, Side, height);
+                        for (int j = 0; j < steps.length; j++) {
+                            if(!steps[j].Finished()) {
+                                steps[j].Run();
+                            }
+
                         }
                         telemetry.update();
                     }
