@@ -100,7 +100,6 @@ public class LeftRedAutonomous extends LinearOpMode {
         int maxrescans = 6;
         int rescaninches = 0;
 
-
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
          * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
@@ -126,6 +125,7 @@ public class LeftRedAutonomous extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+
             while (opModeIsActive()) {
                 if (tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
@@ -135,7 +135,7 @@ public class LeftRedAutonomous extends LinearOpMode {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
-                        int height = 0;
+                        int sheight = 0;
                         for (Recognition recognition : updatedRecognitions) {
                             telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
                             // FIXME Get label == Then Run Function
@@ -143,16 +143,18 @@ public class LeftRedAutonomous extends LinearOpMode {
                                 case "Single":
                                     telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
-                                    height = 1;
+
+                                    sheight = 1;
                                     break;
                                 case "Quad":
                                     telemetry.addData("Found", "Quad going to C");
                                     telemetry.update();
-                                    height = 4;
+                                    sheight = 4;
                                 default:
                                     telemetry.addData("Not Found","going to A");
-
                             }
+
+                           
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
@@ -212,6 +214,9 @@ public class LeftRedAutonomous extends LinearOpMode {
 
     public RobotAction[] genSteps(String color, String side, int stackheight){
         RobotAction[] steps = new RobotAction[5];
+        for (int i = 0; i < steps.length; i++){
+            steps[i]= new RobotAction(myrobot,"stop",1);
+        }
         if (color.toLowerCase() == "red") {
             //RED
             if (side.toLowerCase() == "right") {
