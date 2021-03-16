@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import java.util.Base64;
 
 //import org.firstinspires.ftc.teamcode.RobotHardware;
 
@@ -11,6 +14,10 @@ public class Robot {
     double InchesPerSecond = .11;
     double BeltSpeed = 1;
     double FeederSpeed = 1;
+    double HandOpen = 1;
+    double HandClosed = 0;
+    int ArmOut = 720;
+    int ArmIn = 0;
 
     public void initHW(HardwareMap ahwMap){
         myself.init(ahwMap);
@@ -93,8 +100,24 @@ public class Robot {
         myself.shooterMotor.setPower(t);
     }
 
-    public void StopShooter(){
-        myself.shooterMotor.setPower(0);
+    public void StopShooter(){myself.shooterMotor.setPower(0);}
+
+    public void HandOpen(){myself.handServo.setPosition(HandOpen);}
+
+    public void HandClosed(){myself.handServo.setPosition(HandClosed);}
+
+    public void OpenArm(){
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        myself.armMotor.setTargetPosition(ArmOut);
+        myself.armMotor.setPower(1);
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void CloseArm(){
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        myself.armMotor.setTargetPosition(ArmIn);
+        myself.armMotor.setPower(-1);
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     public void IntakeAndFire(){

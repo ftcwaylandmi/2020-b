@@ -52,14 +52,14 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "LeftRedAutonomous", group = "11846")
-public class LeftRedAutonomous extends LinearOpMode {
+@Autonomous(name = "LeftBlueAutonomous", group = "11846")
+public class LeftBlueAutonomous extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
     private ElapsedTime myruntime = new ElapsedTime();
     private Robot myrobot = new Robot();
-    private static final String Alliance = "red";
+    private static final String Alliance = "blue";
     private static final String Side = "left";
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
@@ -155,7 +155,7 @@ public class LeftRedAutonomous extends LinearOpMode {
                                     telemetry.addData("Not Found","going to A");
                             }
 
-                           
+
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class RobotHardware {
 
@@ -13,6 +14,8 @@ public class RobotHardware {
     public DcMotor beltMotor = null;
     public DcMotor feederMotor = null;
     public DcMotor shooterMotor = null;
+    public DcMotor armMotor = null;
+    public Servo handServo = null;
 
     HardwareMap hwMap = null;
 
@@ -30,6 +33,8 @@ public class RobotHardware {
         beltMotor = hwMap.get(DcMotor.class, "bm");
         feederMotor = hwMap.get(DcMotor.class, "fm");
         shooterMotor = hwMap.get(DcMotor.class, "sm");
+        armMotor = hwMap.get(DcMotor.class, "am");
+        handServo = hwMap.get(Servo.class, "hs");
         leftfrontDrive.setDirection(DcMotor.Direction.FORWARD);
         rightfrontDrive.setDirection(DcMotor.Direction.REVERSE);
         leftbackDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -37,6 +42,8 @@ public class RobotHardware {
         beltMotor.setDirection(DcMotor.Direction.FORWARD);
         feederMotor.setDirection(DcMotor.Direction.FORWARD);
         shooterMotor.setDirection(DcMotor.Direction.REVERSE);
+        armMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        handServo.setDirection(Servo.Direction.FORWARD);
         leftfrontDrive.setPower(0);
         rightfrontDrive.setPower(0);
         leftbackDrive.setPower(0);
@@ -44,6 +51,8 @@ public class RobotHardware {
         beltMotor.setPower(0);
         feederMotor.setPower(0);
         shooterMotor.setPower(0);
+        armMotor.setPower(0);
+        handServo.setPosition(0.00);
         leftfrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightfrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftbackDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -51,6 +60,7 @@ public class RobotHardware {
         beltMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         feederMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         shooterMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 

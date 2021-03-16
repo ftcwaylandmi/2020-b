@@ -40,7 +40,6 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
-
 /**
  * This 2020-2021 OpMode illustrates
  * the basics of using the TensorFlow Object Detection API to
@@ -52,15 +51,15 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@Autonomous(name = "LeftRedAutonomous", group = "11846")
-public class LeftRedAutonomous extends LinearOpMode {
+@Autonomous(name = "RightRedAutonomous", group = "11846")
+public class RightRedAutonomous extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
     private ElapsedTime myruntime = new ElapsedTime();
     private Robot myrobot = new Robot();
     private static final String Alliance = "red";
-    private static final String Side = "left";
+    private static final String Side = "right";
     /*
      * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
      * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
@@ -144,7 +143,6 @@ public class LeftRedAutonomous extends LinearOpMode {
                                 case "Single":
                                     telemetry.addData("Found", "Single going to B");
                                     telemetry.update();
-
                                     sheight = 1;
                                     break;
                                 case "Quad":
@@ -155,7 +153,7 @@ public class LeftRedAutonomous extends LinearOpMode {
                                     telemetry.addData("Not Found","going to A");
                             }
 
-                           
+
                             telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                                     recognition.getLeft(), recognition.getTop());
                             telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",

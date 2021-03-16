@@ -40,6 +40,12 @@ public class TeleOpB extends OpMode{
             myrobot.ReverseBelt();
             myrobot.ReverseFeeder();
         }
+        if ((gamepad2.x) & (!gamepad2.y)){
+            myrobot.OpenArm();
+        }
+        if ((!gamepad2.x) & (gamepad2.y)){
+            myrobot.CloseArm();
+        }
 
         telemetry.update();
         myrobot.StartShooter(trigger);
