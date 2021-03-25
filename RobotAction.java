@@ -37,7 +37,15 @@ public class RobotAction {
                 waittime = 0;
             }else if (myaction == "stop"){
                 myrobot.StopDrive();
+            }else if (myaction == "drop") {
+                myrobot.OpenArm2();
+                myrobot.HandOpen();
+            }else if (myaction == "feeder"){
+                myrobot.DropFeeder();
+            }else if (myaction == "turn"){
+                myrobot.TurnByDegrees(mydistance);
             }
+
             timer.reset();
         }
         while (running) {

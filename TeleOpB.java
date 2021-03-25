@@ -41,10 +41,21 @@ public class TeleOpB extends OpMode{
             myrobot.ReverseFeeder();
         }
         if ((gamepad2.x) & (!gamepad2.y)){
-            myrobot.OpenArm();
+            myrobot.OpenArm2();
         }
         if ((!gamepad2.x) & (gamepad2.y)){
-            myrobot.CloseArm();
+            myrobot.CloseArm2();
+        }
+        if (gamepad2.left_bumper){
+            myrobot.HandOpen();
+        } else if  (gamepad2.right_bumper){
+            myrobot.HandClosed();
+        }
+        if (gamepad1.a){
+            myrobot.DropFeeder();
+        }
+        if (gamepad1.b){
+            myrobot.DropperIn();
         }
 
         telemetry.update();

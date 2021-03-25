@@ -153,6 +153,8 @@ public class RightBlueAutonomous extends LinearOpMode {
                                     sheight = 4;
                                 default:
                                     telemetry.addData("Not Found","going to A");
+                                    telemetry.update();
+                                    sheight = 0;
                             }
 
 
@@ -227,16 +229,22 @@ public class RightBlueAutonomous extends LinearOpMode {
                     steps[0] = new RobotAction(myrobot, "drive", 220);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", -30);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 } else if (stackheight == 1) {
                     // One ring detected
                     steps[0] = new RobotAction(myrobot, "drive", 180);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", 30);
-                } else {
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
+                } else if (stackheight == 0){
                     // No rings detected
                     steps[0] = new RobotAction(myrobot, "drive", 120);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", -30);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 }
             }else{
                 //Left
@@ -245,16 +253,22 @@ public class RightBlueAutonomous extends LinearOpMode {
                     steps[0] = new RobotAction(myrobot, "drive", 220);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", -120);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 } else if (stackheight == 1) {
                     // One ring detected
                     steps[0] = new RobotAction(myrobot, "drive", 180);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", -10);
-                } else {
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
+                } else if (stackheight == 0){
                     // No rings detected
                     steps[0] = new RobotAction(myrobot, "drive", 120);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", -60);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 }
             }
 
@@ -267,16 +281,22 @@ public class RightBlueAutonomous extends LinearOpMode {
                     steps[0] = new RobotAction(myrobot, "drive", 220);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", 60);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 } else if (stackheight == 1) {
                     // One ring detected
                     steps[0] = new RobotAction(myrobot, "drive", 160);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", 30);
-                } else {
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
+                } else if (stackheight == 0){
                     // No rings detected
                     steps[0] = new RobotAction(myrobot, "drive", 120);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", 60);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 }
             }else{
                 //Left
@@ -285,16 +305,22 @@ public class RightBlueAutonomous extends LinearOpMode {
                     steps[0] = new RobotAction(myrobot, "drive", 220);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", 30);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 } else if (stackheight == 1) {
                     // One ring detected
                     steps[0] = new RobotAction(myrobot, "drive", 160);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", -30);
-                } else {
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
+                } else if (stackheight == 0){
                     // No rings detected
                     steps[0] = new RobotAction(myrobot, "drive", 120);
                     steps[1] = new RobotAction(myrobot, "stop", 10);
                     steps[2] = new RobotAction(myrobot, "slide", 30);
+                    steps[3] = new RobotAction(myrobot, "drop", 0);
+                    steps[4] = new RobotAction(myrobot, "stop", 10);
                 }
             }
         }

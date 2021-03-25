@@ -16,6 +16,7 @@ public class RobotHardware {
     public DcMotor shooterMotor = null;
     public DcMotor armMotor = null;
     public Servo handServo = null;
+    public Servo pushServo = null;
 
     HardwareMap hwMap = null;
 
@@ -35,6 +36,7 @@ public class RobotHardware {
         shooterMotor = hwMap.get(DcMotor.class, "sm");
         armMotor = hwMap.get(DcMotor.class, "am");
         handServo = hwMap.get(Servo.class, "hs");
+        pushServo = hwMap.get(Servo.class, "ps");
         leftfrontDrive.setDirection(DcMotor.Direction.FORWARD);
         rightfrontDrive.setDirection(DcMotor.Direction.REVERSE);
         leftbackDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -44,6 +46,7 @@ public class RobotHardware {
         shooterMotor.setDirection(DcMotor.Direction.REVERSE);
         armMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         handServo.setDirection(Servo.Direction.FORWARD);
+        pushServo.setDirection(Servo.Direction.FORWARD);
         leftfrontDrive.setPower(0);
         rightfrontDrive.setPower(0);
         leftbackDrive.setPower(0);
@@ -52,7 +55,8 @@ public class RobotHardware {
         feederMotor.setPower(0);
         shooterMotor.setPower(0);
         armMotor.setPower(0);
-        handServo.setPosition(0.00);
+        handServo.setPosition(1.00);
+        pushServo.setPosition(0.00);
         leftfrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightfrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftbackDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

@@ -17,6 +17,7 @@ public class Autonomous1 extends LinearOpMode {
 
         myrobot.initHW(hardwareMap);
 
+        //Right Blue to C
         RobotAction step1 = new RobotAction(myrobot, "drive", 220);
         RobotAction step2 = new RobotAction(myrobot, "stop", 10);
         RobotAction step3 = new RobotAction(myrobot, "slide", 60);

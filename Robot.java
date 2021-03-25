@@ -14,10 +14,14 @@ public class Robot {
     double InchesPerSecond = .11;
     double BeltSpeed = 1;
     double FeederSpeed = 1;
-    double HandOpen = 1;
-    double HandClosed = 0;
-    int ArmOut = 720;
-    int ArmIn = 0;
+    double HandOpenPos = -1;
+    double HandClosedPos = 1;
+    double PushOut = 1;
+    double PushIn = -1;
+    int ArmOut = -920;
+    int ArmIn = 920;
+    int ArmMove = 1840;
+    int DegreesPerSecond = 1;
 
     public void initHW(HardwareMap ahwMap){
         myself.init(ahwMap);
@@ -102,9 +106,13 @@ public class Robot {
 
     public void StopShooter(){myself.shooterMotor.setPower(0);}
 
-    public void HandOpen(){myself.handServo.setPosition(HandOpen);}
+    public void HandOpen(){myself.handServo.setPosition(HandOpenPos);}
 
-    public void HandClosed(){myself.handServo.setPosition(HandClosed);}
+    public void HandClosed(){myself.handServo.setPosition(HandClosedPos);}
+
+    public void DropFeeder(){myself.pushServo.setPosition(PushOut);}
+
+    public void DropperIn(){myself.pushServo.setPosition(PushIn);}
 
     public void OpenArm(){
         myself.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -113,9 +121,23 @@ public class Robot {
         myself.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
+    public void OpenArm2(){
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        myself.armMotor.setTargetPosition(-ArmMove);
+        myself.armMotor.setPower(1);
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
     public void CloseArm(){
         myself.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         myself.armMotor.setTargetPosition(ArmIn);
+        myself.armMotor.setPower(-1);
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void CloseArm2(){
+        myself.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        myself.armMotor.setTargetPosition(0);
         myself.armMotor.setPower(-1);
         myself.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
@@ -177,6 +199,36 @@ public class Robot {
         }
         //StopDrive();*/
         return waitTime;
+    }
+
+    public void TurnByDegrees( int degrees) {
+        double power = 1;
+
+        double waitTime = 0;
+        if (degrees > 0) {
+            waitTime = degrees * DegreesPerSecond;
+            myself.leftfrontDrive.setPower(-power);
+            myself.leftbackDrive.setPower(-power);
+            myself.rightfrontDrive.setPower(power);
+            myself.rightbackDrive.setPower(power);
+        } else {
+            waitTime = -degrees * DegreesPerSecond;
+            myself.leftfrontDrive.setPower(power);
+            myself.leftbackDrive.setPower(power);
+            myself.rightfrontDrive.setPower(-power);
+            myself.rightbackDrive.setPower(-power);
+        }
+
+        ElapsedTime timer =  new ElapsedTime();
+        timer.reset();
+        while (timer.milliseconds() < (waitTime*10)) {
+
+        }
+        myself.leftfrontDrive.setPower(0);
+        myself.leftbackDrive.setPower(0);
+        myself.rightfrontDrive.setPower(0);
+        myself.rightbackDrive.setPower(0);
+
     }
 /*
     public void SlideByInchesTimeSetPower (int inches, double power) {
