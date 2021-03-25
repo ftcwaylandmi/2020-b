@@ -44,6 +44,8 @@ public class RobotAction {
                 myrobot.DropFeeder();
             }else if (myaction == "turn"){
                 myrobot.TurnByDegrees(mydistance);
+            }else{
+                myrobot.StopDrive();
             }
 
             timer.reset();

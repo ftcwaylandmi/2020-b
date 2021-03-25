@@ -143,20 +143,20 @@ public class Robot {
     }
 
     public void IntakeAndFire(){
-       double FeederStop = 500.00;
-       double BeltStop = 1000.00;
-       double ShooterStop = 100.00;
+       double FeederStopTime = 500.00;
+       double BeltStopTime = 1000.00;
+       double ShooterStopTime = 100.00;
+       StartShooter(1);
        StartFeeder();
        StartBelt();
-       StartShooter(1);
 
        ElapsedTime timer = new ElapsedTime();
        timer.reset();
-       if (timer.milliseconds() > (FeederStop)){
+       if (timer.milliseconds() > (FeederStopTime)){
            StopFeeder();
-        }if(timer.milliseconds() > (FeederStop + BeltStop)){
+        }if(timer.milliseconds() > (FeederStopTime + BeltStopTime)){
            StopBelt();
-        }if(timer.milliseconds() > (FeederStop + BeltStop + ShooterStop)){
+        }if(timer.milliseconds() > (FeederStopTime + BeltStopTime + ShooterStopTime)){
            StopShooter();
         }
     }
